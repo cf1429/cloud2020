@@ -7,7 +7,7 @@
         insert into payment(serial) VALUES(#{serial});
     </insert>
 
-    <resultMap id="BaseResultMap" type="com.atguigu.springcloud.entities.Payment">
+    <resultMap id="BaseResultMap" type="Payment">
         <id column="id" property="id" jdbcType="BIGINT"></id>
         <id column="serial" property="serial" jdbcType="VARCHAR"></id>
     </resultMap>
