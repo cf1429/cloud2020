@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.springcloud.dao.BookDao">
+
+    <insert id="create" parameterType="Book" useGeneratedKeys="true" keyProperty="id">
+        insert into book(name,author) VALUES(#{name},#{author});
+    </insert>
+
+    <resultMap id="BaseResultMap" type="Book">
+        <id column="id" property="id" jdbcType="BIGINT"></id>
+        <id column="name" property="name" jdbcType="VARCHAR"></id>
+        <id column="author" property="author" jdbcType="VARCHAR"></id>
+    </resultMap>
+    <select id="findAllBook"  resultMap="BaseResultMap">
+        select * from book
+    </select>
+
+</mapper>
