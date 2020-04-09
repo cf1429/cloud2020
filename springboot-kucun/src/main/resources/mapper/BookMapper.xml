@@ -7,13 +7,43 @@
         insert into book(name,author) VALUES(#{name},#{author});
     </insert>
 
-    <resultMap id="BaseResultMap" type="Book">
+    <resultMap id="BaseResultMap" type="com.atguigu.springcloud.entities.Book">
         <id column="id" property="id" jdbcType="BIGINT"></id>
         <id column="name" property="name" jdbcType="VARCHAR"></id>
         <id column="author" property="author" jdbcType="VARCHAR"></id>
     </resultMap>
-    <select id="findAllBook"  resultMap="BaseResultMap">
+
+    <select id="findAllBook"  resultMap="BaseResultMap" parameterType="map">
         select * from book
+        <if test="pageSize != null ">
+            limit #{pageIndex},#{pageSize}
+        </if>
     </select>
+
+    <select id="findAllBookCount" parameterType="map" resultType="Integer">
+        select count(1) from book
+    </select>
+
+    <select id="findBookById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select * from book where id = #{id}
+    </select>
+
+    <update id="updateBook" parameterType="com.atguigu.springcloud.entities.Book">
+        UPDATE book
+        <trim prefix="set" suffixOverrides=",">
+            <if test="name != null ">
+                name = #{name},
+            </if>
+            <if test="author != null">
+                author = #{author},
+            </if>
+        </trim>
+        WHERE id = #{id}
+    </update>
+    
+    <delete id="deleteBook" parameterType="java.lang.Integer">
+        DELETE from book where id = #{id}
+    </delete>
+
 
 </mapper>
