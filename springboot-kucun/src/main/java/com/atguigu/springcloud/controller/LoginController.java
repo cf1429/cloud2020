@@ -1,30 +1,50 @@
 package com.atguigu.springcloud.controller;
 
+import cn.hutool.core.util.StrUtil;
 import com.atguigu.springcloud.entities.CommonResult;
+import com.atguigu.springcloud.entities.User;
+import com.atguigu.springcloud.service.UserService;
+import com.atguigu.springcloud.utils.EncryptionUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Collections;
 
 @RestController
-@RequestMapping(value = {"/","/api/"})
+@RequestMapping(value = {"/","/api/user"})
 @Slf4j
 public class LoginController {
+    @Autowired
+    private UserService userService;
 
-    @PostMapping(value = "login")
-    public CommonResult<String> login(@RequestParam(value = "username",required = true) String username,
-                                      @RequestParam(value = "password",required = false) String password){
+    @PostMapping(value = "/login")
+    public CommonResult<User> login(@RequestBody User user){
         log.info("调用登录接口........");
-        CommonResult<String> comparable = new CommonResult();
-        if(username.equals(password)){
-            comparable.setCode(200);
-            comparable.setData("登录成功");
-            log.info("账号和密码一样，登录成功.....");
-        }else{
+        CommonResult<User> comparable = new CommonResult();
+        if(StrUtil.isBlank(user.getUserName()) || StrUtil.isBlank(user.getUserPassword())){
             comparable.setCode(404);
-            comparable.setMessage("登录失败");
+            comparable.setMessage("用户名和密码不能为空");
+            return comparable;
+        };
+        User user1 = userService.findUserByUserName(user.getUserName());
+        if(user1 == null){
+            comparable.setCode(404);
+            comparable.setMessage("用户名或密码错误");
+            return comparable;
         }
-        return comparable;
+        if(!EncryptionUtil.getMd5(user.getUserPassword()).equals(user1.getUserPassword())){
+            comparable.setCode(404);
+            comparable.setMessage("密码错误");
+            return comparable;
+        }else{
+            comparable.setCode(200);
+            comparable.setData(user);
+            return comparable;
+        }
+
     }
+
+
+
 }

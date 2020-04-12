@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.springcloud.dao.UserDao">
+
+    <insert id="create" parameterType="com.atguigu.springcloud.entities.User" useGeneratedKeys="true" keyProperty="id">
+        insert into kc_user (user_name,user_password,role_code,create_time)
+                    VALUES(#{userName},#{userPassword},#{roleCode},#{createTime});
+        </insert>
+
+    <resultMap id="BaseResultMap" type="com.atguigu.springcloud.entities.User">
+        <id column="id" property="id" jdbcType="BIGINT"></id>
+        <id column="user_name" property="userName" jdbcType="VARCHAR"></id>
+        <id column="user_password" property="userPassword" jdbcType="VARCHAR"></id>
+        <id column="role_code" property="roleCode" jdbcType="VARCHAR"></id>
+        <id column="create_time" property="createTime" jdbcType="VARCHAR"></id>
+        <id column="state" property="state" jdbcType="VARCHAR"></id>
+    </resultMap>
+
+    <select id="findUserList"  resultMap="BaseResultMap" parameterType="map">
+        select * from kc_user where state = 0
+        <if test="pageSize != null ">
+            limit #{pageIndex},#{pageSize}
+        </if>
+    </select>
+
+    <select id="findUserListCount" parameterType="map" resultType="Integer">
+        select count(1) from kc_user where state = 0
+    </select>
+
+    <select id="findUserById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select * from kc_user where id = #{id}
+    </select>
+
+    <update id="updateUser" parameterType="com.atguigu.springcloud.entities.User">
+        UPDATE kc_user
+        <trim prefix="set" suffixOverrides=",">
+            <if test="userName != null ">
+                user_name = #{userName},
+            </if>
+            <if test="userPassword != null">
+                user_password = #{userPassword},
+            </if>
+            <if test="roleCode != null">
+                role_code = #{roleCode},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="state != null">
+                state = #{state}
+            </if>
+        </trim>
+        WHERE id = #{id}
+    </update>
+    
+    <delete id="deleteUser" parameterType="java.lang.Integer">
+        DELETE from kc_user where id = #{id}
+    </delete>
+
+    <select id="findUserByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select * from kc_user where user_name = #{userName}
+    </select>
+
+
+</mapper>
