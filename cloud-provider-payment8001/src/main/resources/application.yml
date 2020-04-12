@@ -23,7 +23,7 @@ eureka:
     #表示是否将自己注册到Eureka server 默认我true
     register-with-eureka: true
     service-url:
-      defaultZone: http://localhost:7001/eureka
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
 
 
 
