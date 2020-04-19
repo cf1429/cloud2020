@@ -23,22 +23,18 @@ public class LoginController {
         log.info("调用登录接口........");
         CommonResult<User> comparable = new CommonResult();
         if(StrUtil.isBlank(user.getUserName()) || StrUtil.isBlank(user.getUserPassword())){
-            comparable.setCode(404);
             comparable.setMessage("用户名和密码不能为空");
             return comparable;
         };
         User user1 = userService.findUserByUserName(user.getUserName());
         if(user1 == null){
-            comparable.setCode(404);
             comparable.setMessage("用户名或密码错误");
             return comparable;
         }
         if(!EncryptionUtil.getMd5(user.getUserPassword()).equals(user1.getUserPassword())){
-            comparable.setCode(404);
             comparable.setMessage("密码错误");
             return comparable;
         }else{
-            comparable.setCode(200);
             comparable.setData(user);
             return comparable;
         }

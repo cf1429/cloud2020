@@ -36,67 +36,68 @@ public class UserController {
         map.put("pageSize",pageSize);
         PageResult<List<User>> bookList = userService.findAllUser(map);
         if(bookList != null){
-            commonResult.setCode(200);
             commonResult.setData(bookList);
         }else{
-            commonResult.setCode(404);
             commonResult.setMessage("没有查到有效信息");
         }
         return commonResult;
     }
 
     @PostMapping("/addUser")
-    public CommonResult<String> addUser(@RequestBody User user){
+    public CommonResult<String> addUser(@RequestParam(value = "userName",required = true) String userName,
+                                        @RequestParam(value = "userPassword",required = true) String userPassword){
         CommonResult<String> commonResult = new CommonResult<>();
-        if(StrUtil.isBlank(user.getUserName()) || StrUtil.isBlank(user.getUserPassword())){
-            commonResult.setCode(404);
+        if(StrUtil.isBlank(userName) || StrUtil.isBlank(userPassword)){
             commonResult.setMessage("账号密码不能为空");
             return commonResult;
         }
-        User user1 = userService.findUserByUserName(user.getUserName());
+        User user1 = userService.findUserByUserName(userName);
         if(user1 != null ){
-            commonResult.setCode(404);
             commonResult.setMessage("账户名已存在");
             return commonResult;
         }
+        User user = new User();
+        user.setUserName(userName);
         user.setCreateTime(new Date());
         user.setState(0);
-        user.setUserPassword(EncryptionUtil.getMd5(user.getUserPassword()));
+        user.setUserPassword(EncryptionUtil.getMd5(userPassword));
         int num = userService.create(user);
         if(num >0 ){
             commonResult.setData("添加成功");
-            commonResult.setCode(200);
         }else{
             commonResult.setMessage("添加失败");
-            commonResult.setCode(404);
         }
         return commonResult;
     }
 
     @PostMapping(value = "/findUserById")
-    public CommonResult<User> findUserById(@RequestBody User user){
+    public CommonResult<User> findUserById(@RequestParam(value = "id",required = true) Integer id){
         CommonResult<User> commonResult = new CommonResult<>();
-        User user1 = userService.findUserById(Integer.valueOf(user.getId()));
+        User user1 = userService.findUserById(id);
         if(user1 != null ){
             commonResult.setData(user1);
-            commonResult.setCode(200);
         }else{
             commonResult.setMessage("系统异常");
-            commonResult.setCode(404);
         }
         return commonResult;
     }
 
     @PostMapping(value = "/updateUser")
-    public CommonResult<String> updateUser(@RequestBody User user){
+    public CommonResult<String> updateUser(@RequestParam(value = "id",required = true) Integer id,
+                                           @RequestParam(value = "userName",required = true) String userName,
+                                           @RequestParam(value = "roleCode",required = false) String roleCode){
         CommonResult<String> commonResult = new CommonResult<>();
+        User user = new User();
+        user.setId(id);
+        user.setUserName(userName);
+        if(!StrUtil.isBlank(roleCode)){
+            user.setRoleCode(roleCode);
+        }
         int num = userService.updateUser(user);
         if(num >0 ){
             commonResult.setData("修改成功");
-            commonResult.setCode(200);
         }else{
             commonResult.setMessage("修改失败");
-            commonResult.setCode(404);
         }
         return commonResult;
     }
@@ -110,10 +111,8 @@ public class UserController {
         int num = userService.updateUser(user);
         if(num >0 ){
             commonResult.setData("修改成功");
-            commonResult.setCode(200);
         }else{
             commonResult.setMessage("修改失败");
-            commonResult.setCode(404);
         }
         return commonResult;
     }

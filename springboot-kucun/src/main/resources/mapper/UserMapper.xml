@@ -59,7 +59,7 @@
     </delete>
 
     <select id="findUserByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
-        select * from kc_user where user_name = #{userName}
+        select * from kc_user where user_name = #{userName} and state = 0
     </select>
 
 

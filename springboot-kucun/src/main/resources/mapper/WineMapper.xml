@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.springcloud.dao.WineDao">
+
+    <insert id="create" parameterType="com.atguigu.springcloud.entities.Wine" useGeneratedKeys="true" keyProperty="id">
+        insert into kc_wine
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null and name != ''">
+                name,
+            </if>
+            <if test="number != null ">
+                number,
+            </if>
+            <if test="price != null ">
+                price,
+            </if>
+            <if test="costPrice != null">
+                cost_price,
+            </if>
+            <if test="picture != null and picture != ''">
+                picture,
+            </if>
+            <if test="purchaseDate != null ">
+                purchase_date,
+            </if>
+            <if test="productionDate != null ">
+                production_date,
+            </if>
+            <if test="validNum != null ">
+                valid_num,
+            </if>
+            <if test="expiredDate != null ">
+                expired_date,
+            </if>
+            <if test="userId != null ">
+                user_id,
+            </if>
+            <if test="createTime != null ">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null and name != ''">
+                #{name,jdbcType = VARCHAR},
+            </if>
+            <if test="number != null ">
+                #{number,jdbcType = INTEGER},
+            </if>
+            <if test="price != null ">
+                #{price,jdbcType = DOUBLE},
+            </if>
+            <if test="costPrice != null">
+                #{costPrice,jdbcType = DOUBLE},
+            </if>
+            <if test="picture != null and picture != ''">
+                #{picture,jdbcType = VARCHAR},
+            </if>
+            <if test="purchaseDate != null ">
+                #{purchaseDate,jdbcType = DATE},
+            </if>
+            <if test="productionDate != null ">
+                #{productionDate,jdbcType = DATE},
+            </if>
+            <if test="validNum != null ">
+                #{validNum,jdbcType = INTEGER},
+            </if>
+            <if test="expiredDate != null ">
+                #{expiredDate,jdbcType = DATE},
+            </if>
+            <if test="userId != null ">
+                #{userId,jdbcType = VARCHAR},
+            </if>
+            <if test="createTime != null ">
+                #{createTime,jdbcType = DATE},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType = DATE},
+            </if>
+        </trim>
+    </insert>
+
+    <resultMap id="BaseResultMap" type="com.atguigu.springcloud.entities.Wine">
+        <id column="id" property="id" jdbcType="INTEGER"></id>
+        <id column="name" property="name" jdbcType="VARCHAR"></id>
+        <id column="price" property="price" jdbcType="DOUBLE"></id>
+        <id column="picture" property="picture" jdbcType="VARCHAR"></id>
+        <id column="purchase_date" property="purchaseDate" jdbcType="VARCHAR"></id>
+        <id column="production_date" property="productionDate" jdbcType="VARCHAR"></id>
+        <id column="valid_num" property="validNum" jdbcType="INTEGER"></id>
+        <id column="expired_date" property="expiredDate" jdbcType="VARCHAR"></id>
+        <id column="user_id" property="userId" jdbcType="INTEGER"></id>
+        <id column="create_time" property="createTime" jdbcType="VARCHAR"></id>
+        <id column="update_time" property="updateTime" jdbcType="VARCHAR"></id>
+        <id column="cost_price" property="costPrice" jdbcType="DOUBLE"></id>
+        <id column="priceTotal" property="priceTotal" jdbcType="DOUBLE"></id>
+        <id column="costPriceTotal" property="costPriceTotal" jdbcType="DOUBLE"></id>
+        <id column="netProfit" property="netProfit" jdbcType="DOUBLE"></id>
+    </resultMap>
+
+    <select id="findWineList"  resultMap="BaseResultMap" parameterType="map">
+        select *,
+            (price*number) as priceTotal,
+            (cost_price*number) as costPriceTotal ,
+            (price-cost_price)*number as netProfit
+        from kc_wine where state = 0
+        <if test="name != null and name != ''">
+            and name = #{name}
+        </if>
+        <if test="expiredDateStart != null and expiredDateStart != ''">
+            and #{expiredDateStart} &lt;= expired_date
+        </if>
+        <if test="expiredDateEnd != null and expiredDateEnd != ''">
+            and expired_date &lt;= #{expiredDateEnd}
+        </if>
+        <if test="pageSize != null ">
+            limit #{pageIndex},#{pageSize}
+        </if>
+    </select>
+
+    <select id="findWineListCount" parameterType="map" resultType="Integer">
+        select count(1) from kc_wine where state = 0
+        <if test="name != null and name != ''">
+            and name = #{name}
+        </if>
+        <if test="expiredDateStart != null and expiredDateStart != ''">
+            and #{expiredDateStart} &lt;= expired_date
+        </if>
+        <if test="expiredDateEnd != null and expiredDateEnd != ''">
+            and expired_date &lt;= #{expiredDateEnd}
+        </if>
+    </select>
+
+    <select id="findWineById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select * from kc_wine where id = #{id}
+    </select>
+
+    <update id="updateWine" parameterType="com.atguigu.springcloud.entities.Wine">
+        UPDATE kc_wine
+        <trim prefix="set" suffixOverrides=",">
+            <if test="price != null ">
+                price = #{price},
+            </if>
+            <if test="costPrice != null">
+                cost_price = #{costPrice},
+            </if>
+            <if test="picture != null">
+                picture = #{picture},
+            </if>
+            <if test="purchaseDate != null">
+                purchase_date = #{purchaseDate},
+            </if>
+            <if test="validNum != null">
+                valid_num = #{validNum},
+            </if>
+            <if test="expiredDate != null">
+                expired_date = #{expiredDate},
+            </if>
+            <if test="userId != null ">
+                user_id = #{userId},
+            </if>
+            <if test="state != null ">
+                state = #{state},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </trim>
+        WHERE id = #{id}
+    </update>
+
+
+    <select id="findWineByWineName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select * from kc_wine where name = #{name} and state = 0
+    </select>
+
+
+</mapper>
