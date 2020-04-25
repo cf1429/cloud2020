@@ -14,3 +14,8 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.atguigu.springcloud.entities
+
+# 上传附件的路径
+preread:
+  uploadPath: E://upfile/
+  staticAccessPath: /upfile

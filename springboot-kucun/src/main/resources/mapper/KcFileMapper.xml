@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.springcloud.dao.KcFileDao">
+
+    <insert id="create" parameterType="com.atguigu.springcloud.entities.KcFile" useGeneratedKeys="true" keyProperty="id">
+        insert into kc_file
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="fileName != null and fileName != ''">
+                file_name,
+            </if>
+            <if test="fileSecondName != null and fileSecondName != '' ">
+                file_second_name,
+            </if>
+            <if test="fileType != null and fileType != '' ">
+                file_type,
+            </if>
+            <if test="filePath != null and filePath != ''">
+                file_path,
+            </if>
+            <if test="createTime != null ">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="fileName != null and fileName != ''">
+                #{fileName,jdbcType = VARCHAR},
+            </if>
+            <if test="fileSecondName != null and fileSecondName != '' ">
+                #{fileSecondName,jdbcType = VARCHAR},
+            </if>
+            <if test="fileType != null and fileType != '' ">
+                #{fileType,jdbcType = VARCHAR},
+            </if>
+            <if test="filePath != null and filePath != ''">
+                #{filePath,jdbcType = VARCHAR},
+            </if>
+            <if test="createTime != null ">
+                #{createTime,jdbcType = DATE},
+            </if>
+        </trim>
+    </insert>
+
+    <resultMap id="BaseResultMap" type="com.atguigu.springcloud.entities.KcFile">
+        <id column="id" property="id" jdbcType="INTEGER"></id>
+        <id column="file_name" property="fileName" jdbcType="VARCHAR"></id>
+        <id column="file_second_name" property="fileSecondName" jdbcType="VARCHAR"></id>
+        <id column="file_type" property="fileType" jdbcType="VARCHAR"></id>
+        <id column="file_path" property="filePath" jdbcType="VARCHAR"></id>
+        <id column="create_time" property="createTime" jdbcType="VARCHAR"></id>
+    </resultMap>
+
+    <select id="findKcFileList"  resultMap="BaseResultMap" parameterType="map">
+        select *
+        from kc_file 1=1
+        <if test="pageSize != null ">
+            limit #{pageIndex},#{pageSize}
+        </if>
+    </select>
+
+    <select id="findKcFileListCount" parameterType="map" resultType="Integer">
+        select count(1) from kc_file
+    </select>
+
+    <select id="findkcFileById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select * from kc_file where id = #{id}
+    </select>
+
+</mapper>

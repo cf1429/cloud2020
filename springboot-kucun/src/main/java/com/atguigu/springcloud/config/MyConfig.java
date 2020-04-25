@@ -1,12 +1,18 @@
 package com.atguigu.springcloud.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class MyConfig {
+public class MyConfig extends WebMvcConfigurationSupport {
+
+    @Autowired
+    UploadConfig uploadConfig;
     // 解决前后端分离跨域问题
     @Bean
     public WebMvcConfigurer corsConfigurer(){
@@ -28,5 +34,19 @@ public class MyConfig {
         };
 
     }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+
+        if(System.getProperty("os.name").toLowerCase().contains("linux")){
+            registry.addResourceHandler(uploadConfig.getStaticAccessPath()+"/**").addResourceLocations("file:"+uploadConfig.getUploadPath());
+        }else if(System.getProperty("os.name").toLowerCase().contains("windows")){
+            registry.addResourceHandler(uploadConfig.getStaticAccessPath()+"/**").addResourceLocations("file:"+uploadConfig.getUploadPath());
+        }
+    }
+
+
+
+
 
 }
