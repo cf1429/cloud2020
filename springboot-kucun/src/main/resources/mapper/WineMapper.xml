@@ -83,7 +83,7 @@
         </trim>
     </insert>
 
-    <resultMap id="BaseResultMap" type="com.atguigu.springcloud.entities.Wine">
+    <resultMap id="BaseResultMap" type="com.atguigu.springcloud.entities.res.WineRes">
         <id column="id" property="id" jdbcType="INTEGER"></id>
         <id column="name" property="name" jdbcType="VARCHAR"></id>
         <id column="price" property="price" jdbcType="DOUBLE"></id>
@@ -99,22 +99,28 @@
         <id column="priceTotal" property="priceTotal" jdbcType="DOUBLE"></id>
         <id column="costPriceTotal" property="costPriceTotal" jdbcType="DOUBLE"></id>
         <id column="netProfit" property="netProfit" jdbcType="DOUBLE"></id>
+        <id column="fileId" property="fileId" jdbcType="INTEGER"></id>
+        <id column="file_name" property="fileName" jdbcType="VARCHAR"></id>
+        <id column="file_path" property="filePath" jdbcType="VARCHAR"></id>
     </resultMap>
 
     <select id="findWineList"  resultMap="BaseResultMap" parameterType="map">
-        select *,
-            (price*number) as priceTotal,
-            (cost_price*number) as costPriceTotal ,
-            (price-cost_price)*number as netProfit
-        from kc_wine where state = 0
+        select kw.*,
+            (kw.price * kw.number) as priceTotal,
+            (kw.cost_price * kw.number) as costPriceTotal ,
+            (kw.price-cost_price) * kw.number as netProfit,
+            kf.id as fileId,
+            kf.file_name,
+            kf.file_path
+        from kc_wine kw left JOIN kc_file kf ON kw.picture = kf.id where state = 0
         <if test="name != null and name != ''">
-            and name = #{name}
+            and kw.name = #{name}
         </if>
         <if test="expiredDateStart != null and expiredDateStart != ''">
-            and #{expiredDateStart} &lt;= expired_date
+            and #{expiredDateStart} &lt;= kw.expired_date
         </if>
         <if test="expiredDateEnd != null and expiredDateEnd != ''">
-            and expired_date &lt;= #{expiredDateEnd}
+            and kw.expired_date &lt;= #{expiredDateEnd}
         </if>
         <if test="pageSize != null ">
             limit #{pageIndex},#{pageSize}
@@ -122,15 +128,15 @@
     </select>
 
     <select id="findWineListCount" parameterType="map" resultType="Integer">
-        select count(1) from kc_wine where state = 0
+        select count(1) from  kc_wine kw left JOIN kc_file kf ON kw.picture = kf.id where state = 0
         <if test="name != null and name != ''">
-            and name = #{name}
+            and kw.name = #{name}
         </if>
         <if test="expiredDateStart != null and expiredDateStart != ''">
-            and #{expiredDateStart} &lt;= expired_date
+            and #{expiredDateStart} &lt;= kw.expired_date
         </if>
         <if test="expiredDateEnd != null and expiredDateEnd != ''">
-            and expired_date &lt;= #{expiredDateEnd}
+            and kw.expired_date &lt;= #{expiredDateEnd}
         </if>
     </select>
 

@@ -14,6 +14,7 @@ import java.util.Collections;
 @RestController
 @RequestMapping(value = {"/","/api/user"})
 @Slf4j
+@CrossOrigin
 public class LoginController {
     @Autowired
     private UserService userService;

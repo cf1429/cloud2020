@@ -5,6 +5,7 @@ import com.atguigu.springcloud.dao.WineDao;
 import com.atguigu.springcloud.entities.CommonResult;
 import com.atguigu.springcloud.entities.PageResult;
 import com.atguigu.springcloud.entities.Wine;
+import com.atguigu.springcloud.entities.res.WineRes;
 import com.atguigu.springcloud.service.WineService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,10 +77,10 @@ public class WineServiceImpl implements WineService {
     }
 
     @Override
-    public PageResult<List<Wine>> findWineList(Map<String, Object> map) {
+    public PageResult<List<WineRes>> findWineList(Map<String, Object> map) {
         log.info("调用酒水列表查询接口");
-        PageResult<List<Wine>> pageResult = new PageResult<>();
-        List<Wine> list = wineDao.findWineList(map);
+        PageResult<List<WineRes>> pageResult = new PageResult<>();
+        List<WineRes> list = wineDao.findWineList(map);
         if(list == null && list.size()<0){
             pageResult.setData(list);
             pageResult.setTotal(0);

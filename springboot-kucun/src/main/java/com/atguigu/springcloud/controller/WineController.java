@@ -4,6 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import com.atguigu.springcloud.entities.CommonResult;
 import com.atguigu.springcloud.entities.PageResult;
 import com.atguigu.springcloud.entities.Wine;
+import com.atguigu.springcloud.entities.res.WineRes;
 import com.atguigu.springcloud.service.WineService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,7 @@ public class WineController {
             map.put("name", name);
 
         }
-        PageResult<List<Wine>> wineList = wineService.findWineList(map);
+        PageResult<List<WineRes>> wineList = wineService.findWineList(map);
         CommonResult<PageResult> commonResult = new CommonResult<>();
         commonResult.setData(wineList);
         return commonResult;

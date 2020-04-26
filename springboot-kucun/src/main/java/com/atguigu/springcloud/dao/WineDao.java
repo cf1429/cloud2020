@@ -2,6 +2,7 @@ package com.atguigu.springcloud.dao;
 
 import com.atguigu.springcloud.entities.User;
 import com.atguigu.springcloud.entities.Wine;
+import com.atguigu.springcloud.entities.res.WineRes;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public interface WineDao {
     // 修改酒水记录
     int updateWine(Wine wine);
     // 酒水记录列表查询
-    List<Wine> findWineList(Map<String,Object> map);
+    List<WineRes> findWineList(Map<String,Object> map);
     int findWineListCount(Map<String,Object> map);
     // 删除酒水记录信息
     int deleteWine(Integer id);

@@ -25,7 +25,7 @@ public class FileUploadController {
     public CommonResult<Object> fileUpload(HttpServletRequest request,
                                            @RequestParam(value = "file") MultipartFile file){
         log.info("调用附件上传接口---------fileUpload------");
-        CommonResult<Object> commonResult = fileUploadService.fileUpload(file, request.getServerName()+":"+request.getServerPort());
+        CommonResult<Object> commonResult = fileUploadService.fileUpload(file, request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort());
         return commonResult;
     }
 
