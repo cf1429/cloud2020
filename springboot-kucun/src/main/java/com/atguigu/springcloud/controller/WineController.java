@@ -38,10 +38,10 @@ public class WineController {
         map.put("pageSize",pageSize);
         map.put("pageIndex",pageIndex);
         if(!StrUtil.isBlank(expiredDateStart)){
-            map.put("expiredDateStart",expiredDateStart);
+            map.put("expiredDateStart"," "+expiredDateStart+" ");
         }
         if(!StrUtil.isBlank(expiredDateEnd)){
-            map.put("expiredDateEnd", expiredDateEnd);
+            map.put("expiredDateEnd", " "+expiredDateEnd+" ");
         }
         if(!StrUtil.isBlank(name)){
             map.put("name", name);
