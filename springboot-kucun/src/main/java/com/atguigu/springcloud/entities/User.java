@@ -15,6 +15,7 @@ public class User implements Serializable{
     private Date createTime;
     private String createTimeStr;
     private Integer state;
+    private String token;
 
     public String getCreateTimeStr() {
         if(createTime != null ){
@@ -73,5 +74,13 @@ public class User implements Serializable{
 
     public void setState(Integer state) {
         this.state = state;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }
