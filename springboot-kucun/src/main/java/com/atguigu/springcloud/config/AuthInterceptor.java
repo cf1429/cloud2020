@@ -33,6 +33,7 @@ public class AuthInterceptor implements HandlerInterceptor {
         }
         String token = this.getAuthToken(request);
         if(StrUtil.isBlank(token)){
+            request.getRequestDispatcher("/").forward(request,response);
             return false;
         }else{
             redisServie = this.getRedisUtil(RedisServie.class,request);
