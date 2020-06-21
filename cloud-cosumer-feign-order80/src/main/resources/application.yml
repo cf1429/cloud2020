@@ -9,4 +9,10 @@ eureka:
     #fetch-registry: true   #是否从EurekaServer抓取已有的注册信息，默认为true，
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+ribbon:
+  readTimeout: 5000
+  ConnectTimeout: 5000
+logging:
+  level:
+    com.atguigu.springcloud.service.PaymentFeignService: debug
 
