@@ -1,18 +1,16 @@
 package com.atguigu.springcloud.controller;
 
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.json.JSON;
 import com.atguigu.springcloud.entities.CommonResult;
 import com.atguigu.springcloud.entities.User;
-import com.atguigu.springcloud.service.RedisServie;
-import com.atguigu.springcloud.service.UserService;
+import com.atguigu.springcloud.RedisServie;
+import com.atguigu.springcloud.UserService;
 import com.atguigu.springcloud.utils.EncryptionUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Collections;
 import java.util.UUID;
 
 @RestController

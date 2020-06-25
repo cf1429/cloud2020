@@ -2,15 +2,12 @@ package com.atguigu.springcloud.controller;
 
 import cn.hutool.core.util.StrUtil;
 import com.atguigu.springcloud.entities.CommonResult;
-import com.atguigu.springcloud.entities.Book;
 import com.atguigu.springcloud.entities.PageResult;
 import com.atguigu.springcloud.entities.User;
-import com.atguigu.springcloud.service.BookService;
-import com.atguigu.springcloud.service.UserService;
+import com.atguigu.springcloud.BookService;
+import com.atguigu.springcloud.UserService;
 import com.atguigu.springcloud.utils.EncryptionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;

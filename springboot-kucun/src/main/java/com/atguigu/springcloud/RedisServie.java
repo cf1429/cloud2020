@@ -1,4 +1,4 @@
-package com.atguigu.springcloud.service;
+package com.atguigu.springcloud;
 
 /**
  * @author cf

@@ -1,4 +1,4 @@
-package com.atguigu.springcloud.service;
+package com.atguigu.springcloud;
 
 import com.atguigu.springcloud.entities.CommonResult;
 import org.springframework.cloud.openfeign.FeignClient;

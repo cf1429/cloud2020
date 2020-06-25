@@ -1,10 +1,9 @@
 package com.atguigu.springcloud.controller;
 
 import com.atguigu.springcloud.entities.CommonResult;
-import com.atguigu.springcloud.service.FileUploadService;
+import com.atguigu.springcloud.FileUploadService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 

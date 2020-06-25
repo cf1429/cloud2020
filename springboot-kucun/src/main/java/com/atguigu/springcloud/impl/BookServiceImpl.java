@@ -1,13 +1,10 @@
-package com.atguigu.springcloud.service.impl;
+package com.atguigu.springcloud.impl;
 
 import com.atguigu.springcloud.dao.BookDao;
 import com.atguigu.springcloud.entities.Book;
 import com.atguigu.springcloud.entities.PageResult;
-import com.atguigu.springcloud.service.BookService;
-import jdk.nashorn.internal.ir.annotations.Reference;
+import com.atguigu.springcloud.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

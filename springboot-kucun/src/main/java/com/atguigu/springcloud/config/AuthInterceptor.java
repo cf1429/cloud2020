@@ -2,20 +2,15 @@ package com.atguigu.springcloud.config;
 
 import cn.hutool.core.util.StrUtil;
 import com.atguigu.springcloud.entities.User;
-import com.atguigu.springcloud.service.RedisServie;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.Reference;
+import com.atguigu.springcloud.RedisServie;
 import org.springframework.lang.Nullable;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-import sun.swing.StringUIClientPropertyKey;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Enumeration;
 
 /**
  * @author cf

@@ -1,6 +1,6 @@
-package com.atguigu.springcloud.service.impl;
+package com.atguigu.springcloud.impl;
 
-import com.atguigu.springcloud.service.RedisServie;
+import com.atguigu.springcloud.RedisServie;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
