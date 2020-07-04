@@ -5,7 +5,7 @@ import com.atguigu.springcloud.entities.CommonResult;
 import com.atguigu.springcloud.entities.PageResult;
 import com.atguigu.springcloud.entities.Wine;
 import com.atguigu.springcloud.entities.res.WineRes;
-import com.atguigu.springcloud.WineService;
+import com.atguigu.springcloud.service.WineService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

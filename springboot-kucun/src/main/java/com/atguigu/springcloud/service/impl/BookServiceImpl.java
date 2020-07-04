@@ -1,9 +1,9 @@
-package com.atguigu.springcloud.impl;
+package com.atguigu.springcloud.service.impl;
 
 import com.atguigu.springcloud.dao.BookDao;
 import com.atguigu.springcloud.entities.Book;
 import com.atguigu.springcloud.entities.PageResult;
-import com.atguigu.springcloud.BookService;
+import com.atguigu.springcloud.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

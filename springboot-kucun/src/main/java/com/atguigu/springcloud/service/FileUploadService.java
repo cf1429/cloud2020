@@ -1,4 +1,4 @@
-package com.atguigu.springcloud;
+package com.atguigu.springcloud.service;
 
 import com.atguigu.springcloud.entities.CommonResult;
 import org.springframework.web.multipart.MultipartFile;

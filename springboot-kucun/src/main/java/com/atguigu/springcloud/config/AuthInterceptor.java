@@ -2,7 +2,7 @@ package com.atguigu.springcloud.config;
 
 import cn.hutool.core.util.StrUtil;
 import com.atguigu.springcloud.entities.User;
-import com.atguigu.springcloud.RedisServie;
+import com.atguigu.springcloud.service.RedisServie;
 import org.springframework.lang.Nullable;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;

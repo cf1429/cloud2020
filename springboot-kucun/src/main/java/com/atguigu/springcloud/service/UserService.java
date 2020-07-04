@@ -1,4 +1,4 @@
-package com.atguigu.springcloud;
+package com.atguigu.springcloud.service;
 
 import com.atguigu.springcloud.entities.PageResult;
 import com.atguigu.springcloud.entities.User;

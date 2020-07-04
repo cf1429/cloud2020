@@ -1,11 +1,11 @@
-package com.atguigu.springcloud.impl;
+package com.atguigu.springcloud.service.impl;
 
 import cn.hutool.core.util.StrUtil;
 import com.atguigu.springcloud.config.UploadConfig;
 import com.atguigu.springcloud.dao.KcFileDao;
 import com.atguigu.springcloud.entities.CommonResult;
 import com.atguigu.springcloud.entities.KcFile;
-import com.atguigu.springcloud.FileUploadService;
+import com.atguigu.springcloud.service.FileUploadService;
 import com.atguigu.springcloud.utils.FileTools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
