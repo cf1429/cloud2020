@@ -54,8 +54,8 @@ public class Producer02_publish {
              */
              channel.exchangeDeclare(EXCHAGE_FANOUT_INFORM,BuiltinExchangeType.FANOUT);
              // 交换机和队列绑定
-            channel.exchangeBind(QUEUE_INFORM_EMAIL,EXCHAGE_FANOUT_INFORM,"");
-            channel.exchangeBind(QUEUE_INFORM_SMS,EXCHAGE_FANOUT_INFORM,"");
+            channel.queueBind(QUEUE_INFORM_EMAIL,EXCHAGE_FANOUT_INFORM,"");
+            channel.queueBind(QUEUE_INFORM_SMS,EXCHAGE_FANOUT_INFORM,"");
 
             for(int i=0;i<5;i++){
                 String message = "send inform message to user";
