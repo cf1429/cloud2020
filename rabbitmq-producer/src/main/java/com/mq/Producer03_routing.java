@@ -31,7 +31,7 @@ public class Producer03_routing {
         try {
             // 新建连接
             connection = factory.newConnection();
-            // 新建会话通道，所有的通信都在channel通道中完成
+                                                                                                                                                                                                                                                                                                                                                               // 新建会话通道，所有的通信都在channel通道中完成
             channel = connection.createChannel();
             // 申明一个队列
             /**
@@ -56,11 +56,25 @@ public class Producer03_routing {
             channel.exchangeDeclare(EXCHAGE_FANOUT_INFORM,BuiltinExchangeType.DIRECT);
             // 交换机和队列绑定
             channel.queueBind(QUEUE_INFORM_EMAIL,EXCHAGE_FANOUT_INFORM,INFORM_EMAIL_ROUTING);
+            channel.queueBind(QUEUE_INFORM_EMAIL,EXCHAGE_FANOUT_INFORM,"info");
             channel.queueBind(QUEUE_INFORM_SMS,EXCHAGE_FANOUT_INFORM,INFORM_SMS_ROUTING);
+            channel.queueBind(QUEUE_INFORM_SMS,EXCHAGE_FANOUT_INFORM,"info");
 
-            for(int i=0;i<5;i++){
+           /* for(int i=0;i<5;i++){
                 String message = "send email inform message to user";
                 channel.basicPublish(EXCHAGE_FANOUT_INFORM,INFORM_EMAIL_ROUTING,null,message.getBytes()   );
+                System.out.println("发送记录----"+message);
+            }
+
+            for(int i=0;i<5;i++){
+                String message = "send sms inform message to user";
+                channel.basicPublish(EXCHAGE_FANOUT_INFORM,INFORM_SMS_ROUTING,null,message.getBytes()   );
+                System.out.println("发送记录----"+message);
+            }*/
+
+            for(int i=0;i<5;i++){
+                String message = "send inform message to user";
+                channel.basicPublish(EXCHAGE_FANOUT_INFORM,"info",null,message.getBytes()   );
                 System.out.println("发送记录----"+message);
             }
 
