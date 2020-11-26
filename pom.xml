@@ -27,6 +27,7 @@
         <module>java-concurrency</module>
         <module>rabbitmq-producer</module>
         <module>rabbitmq-consumer</module>
+        <module>rabbitmq-springboot</module>
     </modules>
 
 
