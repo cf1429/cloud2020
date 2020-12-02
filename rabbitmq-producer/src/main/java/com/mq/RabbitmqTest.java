@@ -20,8 +20,27 @@ public class RabbitmqTest {
         System.out.println("skjk");
     }
 
+
+    @Test
+    public void test2(){
+
+
+        String message = "send email message to user";
+
+        /**
+         * 参数：
+         * 1.交换机
+         * 2.routingKey
+         * 3.消息内容
+         */
+        rabbitTemplate.convertAndSend("kkk","first file");
+    }
+
+
     @Test
     public void TestEmail(){
+
+
         String message = "send email message to user";
 
         /**
@@ -31,6 +50,7 @@ public class RabbitmqTest {
          * 3.消息内容
          */
         rabbitTemplate.convertAndSend(RabbitmqConfig.EXCHAGE_TOPICS_INFORM,"inform.email",message);
+
 
     }
 }
