@@ -15,6 +15,11 @@ spring:
           predicates:
             - Path=/payment/get/**
 
+        - id: payment_routh2
+          uri: http://localhost:8001/
+          predicates:
+            - Path=/payment/lb/**
+
 #  cloud:
 #    gateway:
 #      routes:
