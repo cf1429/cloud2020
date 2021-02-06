@@ -28,6 +28,8 @@
         <module>rabbitmq-producer</module>
         <module>rabbitmq-consumer</module>
         <module>rabbitmq-springboot</module>
+        <module>cloudgetewaygetway9527</module>
+        <module>cloud-geteway-geteway9527</module>
     </modules>
 
 

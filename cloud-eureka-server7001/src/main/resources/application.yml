@@ -11,7 +11,7 @@ eureka:
       #集群
       #defaultZone: http://eureka7002.com:7002/eureka/
       #单机版
-      defaultZone: http://eureka700.com:700/eureka/
+      defaultZone: http://eureka7001.com:7001/eureka/
   server:
     # 关闭自我保护机制，保证不可用服务被即使清除
     enable-self-preservation: false
