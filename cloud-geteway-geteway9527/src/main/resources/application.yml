@@ -7,16 +7,18 @@ spring:
     gateway:
       discovery:
         locator:
-          enabled: true
+          enabled: true   #开启从注册中心动态创建路由大的功能，利用微服务名称进行路由
           lower-case-service-id: true
       routes:
         - id: payment_routh
-          uri: http://localhost:8001/
+          #uri: http://localhost:8001/
+          uri: lb://CLOUD-PAYMENT-SERVICE   #匹配后要提供服务的路由地址
           predicates:
             - Path=/payment/get/**
 
         - id: payment_routh2
-          uri: http://localhost:8001/
+          #uri: http://localhost:8001/
+          uri: lb://CLOUD-PAYMENT-SERVICE    #匹配后要提供服务的路由地址
           predicates:
             - Path=/payment/lb/**
 
