@@ -19,6 +19,8 @@ spring:
         - id: payment_routh2
           #uri: http://localhost:8001/
           uri: lb://CLOUD-PAYMENT-SERVICE    #匹配后要提供服务的路由地址
+          filters:
+            - AddRequestHeader=X-Request-Id, 1024   #filter 过滤
           predicates:
             - Path=/payment/lb/**
             - After=2021-02-13T10:36:54.290+08:00[Asia/Shanghai]   # 在此事后之后生效
