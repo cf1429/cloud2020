@@ -28,6 +28,7 @@
         <module>rabbitmq-producer</module>
         <module>rabbitmq-consumer</module>
         <module>cloud-geteway-geteway9527</module>
+        <module>cloud-config-center-3344</module>
     </modules>
 
 
