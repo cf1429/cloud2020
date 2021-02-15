@@ -30,7 +30,7 @@ spring:
             #- Header=X-Request-Id,\d+    #请求头要有X-Request-Id 属性并且值为整数的正则表达式
             #- Host=**.atguigu.com       #请求中必须包含地址host
             - Method=GET    # 请求方式为发送get请求
-            - Query=username,\d+    #要有参数名username并且值还是整数才能路由
+            #- Query=username,\d+    #要有参数名username并且值还是整数才能路由
 
 eureka:
   instance:
