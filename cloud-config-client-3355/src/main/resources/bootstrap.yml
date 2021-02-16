@@ -15,7 +15,7 @@ eureka:
     service-url:
       defaultZone: http://localhost:7001/eureka
 
-#暴露监控端口
+#暴露监控端口，即解决配置中心修改之后客户端未生效问题，重点发送post请求：curl -X POST "http://localhost:3355/actuator/refresh"
 management:
   endpoints:
     web:
