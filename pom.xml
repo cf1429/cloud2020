@@ -29,6 +29,7 @@
         <module>rabbitmq-consumer</module>
         <module>cloud-geteway-geteway9527</module>
         <module>cloud-config-center-3344</module>
+        <module>cloud-config-client-3355</module>
     </modules>
 
 
