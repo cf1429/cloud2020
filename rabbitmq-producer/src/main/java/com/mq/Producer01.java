@@ -17,7 +17,7 @@ public class Producer01 {
     public static void main(String[] args) {
         // 通过工厂代理访问mq
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("127.0.0.1");
+        factory.setHost("8.133.170.159");
         factory.setPort(5672); // 端口
         factory.setUsername("guest");
         factory.setPassword("guest");

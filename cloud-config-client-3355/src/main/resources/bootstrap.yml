@@ -10,6 +10,13 @@ spring:
       name: config     #配置文件名称
       profile: dev     #读取后缀名称，上述3个综合：master分支上config-dev.yml 的配置文件被读取http://config-3344/master/config-dev.yml
       uri: http://localhost:3344  #配置中心地址
+
+  rabbitmq:
+    host: 8.133.170.159
+    port: 5672
+    username: guest
+    password: guest
+
 eureka:
   client:
     service-url:
