@@ -18,7 +18,5 @@ public class Test {
     public void test(){
         List<User> users = userMapper.selectList(null);
         users.forEach(System.out::println);
-
-
     }
 }
