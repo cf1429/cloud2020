@@ -19,4 +19,14 @@ public class Test {
         List<User> users = userMapper.selectList(null);
         users.forEach(System.out::println);
     }
+    @org.junit.Test
+    public void testInsert(){
+        User user = new User();
+        user.setName("wanglu");
+        user.setAge(3);
+        user.setEmail("1429043932@qq.com");
+        Integer insert = userMapper.insert(user);
+        System.out.println(insert);
+        System.out.println(user);
+    }
 }
