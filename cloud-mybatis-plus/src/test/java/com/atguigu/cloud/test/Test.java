@@ -110,5 +110,12 @@ public class Test {
         userMapper.deleteBatchIds(Arrays.asList(1362644586793328648L,1362644586793328649L));
     }
 
+    //测试逻辑删除
+    @org.junit.Test
+    public void testDelete(){
+        int i = userMapper.deleteById(1L);
+        System.out.println(i);
+    }
+
 
 }

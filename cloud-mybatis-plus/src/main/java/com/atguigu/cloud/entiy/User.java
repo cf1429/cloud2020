@@ -16,6 +16,9 @@ public class User {
     private String email;
     @Version
     private Integer version;  //乐观锁版本号字段
+    @TableLogic   //逻辑删除
+    private Integer deleted;   //逻辑删除标识
+
     @TableField(fill = FieldFill.INSERT)
     private Date createTime;
     @TableField(fill = FieldFill.INSERT_UPDATE)
