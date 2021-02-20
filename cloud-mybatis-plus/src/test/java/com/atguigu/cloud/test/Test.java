@@ -29,4 +29,14 @@ public class Test {
         System.out.println(insert);
         System.out.println(user);
     }
+
+    @org.junit.Test
+    public void testUpdate(){
+        User user = new User();
+        user.setId(1362644586793328652L);
+        user.setAge(20);
+        user.setName("张柳");
+        int result = userMapper.updateById(user);
+        System.out.println(result);
+    }
 }
