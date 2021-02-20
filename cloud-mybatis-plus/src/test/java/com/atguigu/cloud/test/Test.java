@@ -2,6 +2,7 @@ package com.atguigu.cloud.test;
 
 import com.atguigu.cloud.entiy.User;
 import com.atguigu.cloud.mapper.UserMapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,5 +83,32 @@ public class Test {
         List<User> users1 = userMapper.selectByMap(map);
         users1.forEach(System.out::println);
     }
+
+    //分页查询
+    @org.junit.Test
+    public void testPage(){
+        /**
+         * 参数一：当前页
+         * 参数二：页面大小
+         *
+         */
+        Page<User> page = new Page<>(2,5);
+        userMapper.selectPage(page, null);
+        page.getRecords().forEach(System.out::println);
+    }
+
+    //删除操作
+    @org.junit.Test
+    public void testDeleteById(){
+        int i = userMapper.deleteById(1362644586793328646L);
+        System.out.println(i);
+    }
+
+    // 批量删除
+    @org.junit.Test
+    public void testBatchDeleteByIds(){
+        userMapper.deleteBatchIds(Arrays.asList(1362644586793328648L,1362644586793328649L));
+    }
+
 
 }
