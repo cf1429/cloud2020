@@ -1,0 +1,6 @@
+ Consume Time：32 ms 2021-02-21 10:25:21
+ Execute SQL：SELECT id,name,age,email,version,deleted,create_time,update_time FROM user WHERE deleted=0
+
+ Consume Time：62 ms 2021-02-21 10:25:55
+ Execute SQL：INSERT INTO user ( name, age, email, create_time, update_time ) VALUES ( 'wanglu', 3, '1429043932@qq.com', '2021-02-21T10:25:55.021+0800', '2021-02-21T10:25:55.025+0800' )
+
