@@ -4,3 +4,33 @@
  Consume Time：62 ms 2021-02-21 10:25:55
  Execute SQL：INSERT INTO user ( name, age, email, create_time, update_time ) VALUES ( 'wanglu', 3, '1429043932@qq.com', '2021-02-21T10:25:55.021+0800', '2021-02-21T10:25:55.025+0800' )
 
+ Consume Time：31 ms 2021-02-21 10:41:29
+ Execute SQL：SELECT id,name,age,email,version,deleted,create_time,update_time FROM user WHERE deleted=0 AND (name IS NOT NULL AND email IS NOT NULL AND age >= 12)
+
+ Consume Time：32 ms 2021-02-21 10:47:07
+ Execute SQL：SELECT id,name,age,email,version,deleted,create_time,update_time FROM user WHERE deleted=0 AND (name = '张柳')
+
+ Consume Time：29 ms 2021-02-21 10:47:46
+ Execute SQL：SELECT id,name,age,email,version,deleted,create_time,update_time FROM user WHERE deleted=0 AND (name = 'Billie')
+
+ Consume Time：37 ms 2021-02-21 10:51:15
+ Execute SQL：SELECT COUNT( * ) FROM user WHERE deleted=0 AND (age BETWEEN 12 AND 30)
+
+ Consume Time：29 ms 2021-02-21 10:58:20
+ Execute SQL：SELECT id,name,age,email,version,deleted,create_time,update_time FROM user WHERE deleted=0 AND (name NOT LIKE '%u%' AND email LIKE '%5')
+
+ Consume Time：31 ms 2021-02-21 11:10:02
+ Execute SQL：SELECT id,name,age,email,version,deleted,create_time,update_time FROM user WHERE deleted=0 AND (id IN (select id from user where id <3))
+
+ Consume Time：33 ms 2021-02-21 11:18:59
+ Execute SQL：select * from user;
+
+ Consume Time：27 ms 2021-02-21 11:21:18
+ Execute SQL：select * from user;
+
+ Consume Time：30 ms 2021-02-21 11:24:15
+ Execute SQL：select * from user;
+
+ Consume Time：29 ms 2021-02-21 11:28:10
+ Execute SQL：select * from user;
+
