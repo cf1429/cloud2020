@@ -10,7 +10,7 @@ spring:
           destination: studyExchange
           content-type: application/json
           binder: defaultRabbit
-          group: atguiguA
+          #group: atguiguA
       binders:
         defaultRabbit:
           type: rabbit
