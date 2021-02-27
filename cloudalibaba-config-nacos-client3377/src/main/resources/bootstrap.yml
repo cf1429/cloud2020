@@ -10,7 +10,8 @@ spring:
       config:
         server-addr: 8.133.170.159:8848  #nacos作为配置中心地址
         file-extension: yaml  #指定yaml格式配置
-        group: DEV_GROUP
+        group: TEST_GROUP     #指定group组
+        namespace: b2de88b3-065c-4720-930c-cdd2dcadd033   #指定namespace配置
 
 
 # nacos 配置中心配置文件名称规则
