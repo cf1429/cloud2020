@@ -6,7 +6,8 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 8.133.170.159:8848
+        server-addr: 8.133.170.159:1111  #配置通过nacos做的nacos负载均衡集群
+        #server-addr: 8.133.170.159:8848   #单机nacos
 management:
   endpoints:
     web:
