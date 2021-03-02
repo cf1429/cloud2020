@@ -8,9 +8,14 @@ spring:
       discovery:
         server-addr: 8.133.170.159:1111
     sentinel:
-      transprort:
-        dashboard: 8.133.170.159:8088
+      transport:
+        dashboard: localhost:8080
         port: 8719
+        #clientIp: 192.168.189.1
+#    sentinel:
+#      transprort:
+#        dashboard: 8.133.170.159:8088
+#        port: 8719
 management:
   endpoints:
     web:
