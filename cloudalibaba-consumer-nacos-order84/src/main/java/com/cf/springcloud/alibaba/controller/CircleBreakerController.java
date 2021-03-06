@@ -22,12 +22,22 @@ public class CircleBreakerController {
 
     @Resource
     private RestTemplate restTemplate;
+
+
+    /**
+     * blockHandlerClass sentinel控制台服务限流的自定义全局配置类 blockHandler 此方法限流降级调用的方法
+     * fallbackClass 用户异常服务降级兜底自定义全局配置类  fallback 此方法异常兜底方法
+     * exceptionsToIgnore 忽略fallback兜底，也不走sentinel 限流降级控制
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/consumer/fallback/{id}")
     //@SentinelResource(value = "fallback",fallbackClass = {MyHandlerFallback.class}, fallback = "handlerFallback")  //fallback只负责业务异常
     //@SentinelResource(value = "fallback",blockHandlerClass = CustomerBlockHandler.class, blockHandler = "handlerException") //blockHandler只负责sentinel控制台的配置违规
     @SentinelResource(value = "fallback",
             blockHandlerClass = {CustomerBlockHandler.class}, blockHandler = "handlerException",
-            fallbackClass = {MyHandlerFallback.class},fallback = "handlerFallback")   //在即配置sentinel限流和fallback兜底的情况下，如果发生错误，首先是sentinel限流起作用
+            fallbackClass = {MyHandlerFallback.class},fallback = "handlerFallback",
+            exceptionsToIgnore = {IllegalArgumentException.class})   //在即配置sentinel限流和fallback兜底的情况下，如果发生错误，首先是sentinel限流起作用
     public CommonResult<Payment> fallback(@PathVariable Long id ){
         CommonResult<Payment> forObject = restTemplate.getForObject(SERVICE_URL + "/paymentSQL/" + id, CommonResult.class, id);
         if(id == 4){
