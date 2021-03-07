@@ -5,6 +5,7 @@ import com.atguigu.springcloud.entities.CommonResult;
 import com.atguigu.springcloud.entities.Payment;
 import com.cf.springcloud.alibaba.entity.CustomerBlockHandler;
 import com.cf.springcloud.alibaba.entity.MyHandlerFallback;
+import com.cf.springcloud.alibaba.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,6 +49,15 @@ public class CircleBreakerController {
         return forObject;
     }
 
+
+    //========= OpenFeign
+    @Resource
+    private PaymentService paymentService;
+
+    @GetMapping(value = "/consumer/paymentSQL/{id}")
+    public CommonResult<Payment> paymentSQL(@PathVariable(value = "id",required = true) Long id){
+        return paymentService.paymentSQL(id);
+    }
 
 
 
