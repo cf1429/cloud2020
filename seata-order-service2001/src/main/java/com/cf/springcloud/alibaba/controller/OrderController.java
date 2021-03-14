@@ -4,6 +4,7 @@ package com.cf.springcloud.alibaba.controller;
 import com.cf.springcloud.alibaba.domain.CommonResult;
 import com.cf.springcloud.alibaba.service.OrderService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -26,6 +27,10 @@ public class OrderController {
         orderService.create(order);
         return new CommonResult(200,"订单创建成功");
 
+    }
+    @GetMapping("/test")
+    public String testSnowflake(){
+        return orderService.getIdBySnowFlake();
     }
 
 }

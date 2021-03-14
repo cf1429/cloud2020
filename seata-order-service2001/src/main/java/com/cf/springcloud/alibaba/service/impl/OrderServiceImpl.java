@@ -6,12 +6,15 @@ import com.cf.springcloud.alibaba.domain.TOrder;
 import com.cf.springcloud.alibaba.service.AccountService;
 import com.cf.springcloud.alibaba.service.OrderService;
 import com.cf.springcloud.alibaba.service.StorageService;
+import com.cf.springcloud.alibaba.util.IdGeneratorSnowflake;
 import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * <p>
@@ -30,6 +33,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, TOrder> implement
     private StorageService storageService;
     @Resource
     private AccountService accountService;
+    @Autowired
+    private IdGeneratorSnowflake idGeneratorSnowflake;  // 测试雪花算法
     @Override
     @GlobalTransactional(name = "my_test_tx_group",rollbackFor = Exception.class)
     public void create(TOrder order) {
@@ -51,5 +56,18 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, TOrder> implement
 
         log.info("----->下订单结束了，----00000");
 
+    }
+
+    @Override
+    public String getIdBySnowFlake() {
+        ExecutorService threadPool = Executors.newFixedThreadPool(5);
+        for (int i=1;i<20;i++){
+            threadPool.submit(()->{
+                System.out.println(idGeneratorSnowflake.snowflakeId());
+            });
+        }
+        threadPool.shutdown();
+
+        return "hello snowflake";
     }
 }

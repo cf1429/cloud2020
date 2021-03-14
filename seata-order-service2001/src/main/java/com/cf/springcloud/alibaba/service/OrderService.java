@@ -15,5 +15,9 @@ import com.cf.springcloud.alibaba.domain.TOrder;
 public interface OrderService extends IService<TOrder> {
     public void create(TOrder order);
 
+    public String getIdBySnowFlake();
+
+
+
 
 }
