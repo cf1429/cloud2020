@@ -1,0 +1,47 @@
+server:
+  port: 2002
+spring:
+  application:
+    name: seata-storage-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 8.133.170.159:1111
+        register-enabled: true
+        namespace: 2c2c272c-76a0-4336-b18c-75021a1db0b6
+      config:
+        server-addr: 8.133.170.159:1111
+        enabled: true
+        file-extension: yaml
+        namespace: 8.133.170.159:1111
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://8.133.170.159:3306/seata_storage
+    username: root
+    password: awnjqq58
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml
+seata:
+  enabled: true
+  application-id: ${spring.application.name}
+  tx-service-group: my_test_tx_group
+  config:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 8.133.170.159:1111
+      group: SEATA_GROUP
+      namespace: 2c2c272c-76a0-4336-b18c-75021a1db0b6
+      password: "nacos"
+      username: "nacos"
+
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 8.133.170.159:1111
+      group: SEATA_GROUP
+      namespace: 2c2c272c-76a0-4336-b18c-75021a1db0b6
+      username: "nacos"
+      password: "nacos"

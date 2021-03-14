@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cf.springcloud.alibaba.mapper.OrderMapper">
+    <insert id="insert" parameterType="com.cf.springcloud.alibaba.domain.TOrder" useGeneratedKeys = "true" keyProperty = "id">
+        insert into
+        t_order (user_id,product_id,count,money,status)
+        VALUES (#{userId},#{productId},#{count},#{money},#{status})
+    </insert>
+
+</mapper>

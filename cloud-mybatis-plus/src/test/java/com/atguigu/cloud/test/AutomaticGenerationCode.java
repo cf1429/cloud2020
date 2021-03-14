@@ -42,7 +42,7 @@ public class AutomaticGenerationCode {
 
         //设置数据源
         DataSourceConfig dataSourceConfig = new DataSourceConfig();
-        dataSourceConfig.setUrl("jdbc:mysql://8.133.170.159:3306/db2020?useUnicode=true&characterEncoding=utf8&useSSL=false&tinyInt1isBit=true");
+        dataSourceConfig.setUrl("jdbc:mysql://8.133.170.159:3306/seata_storage?useUnicode=true&characterEncoding=utf8&useSSL=false&tinyInt1isBit=true");
         dataSourceConfig.setDriverName("com.mysql.jdbc.Driver");
         dataSourceConfig.setUsername("root");
         dataSourceConfig.setPassword("awnjqq58");
@@ -60,21 +60,21 @@ public class AutomaticGenerationCode {
 
         //策略配置
         StrategyConfig strategyConfig = new StrategyConfig();
-        strategyConfig.setInclude("book","order","user_order");   //设置要映射的表名,即需要生成代码的表名称
+        strategyConfig.setInclude("t_storage");   //设置要映射的表名,即需要生成代码的表名称
         strategyConfig.setNaming(NamingStrategy.underline_to_camel); //将数据库字段中的下划线转成驼峰命名
         strategyConfig.setColumnNaming(NamingStrategy.underline_to_camel);
         strategyConfig.setEntityLombokModel(true);  //自动支持lombok
-        strategyConfig.setLogicDeleteFieldName("deleted");
+//        strategyConfig.setLogicDeleteFieldName("deleted");
         //自动填充配置
-        TableFill createTime = new TableFill("create_time", FieldFill.INSERT);
-        TableFill updateTime = new TableFill("update_time", FieldFill.INSERT_UPDATE);
-        List<TableFill> tableFills = new ArrayList<>();
-        tableFills.add(createTime);
-        tableFills.add(updateTime);
-        strategyConfig.setTableFillList(tableFills);
+        //TableFill createTime = new TableFill("create_time", FieldFill.INSERT);
+        //TableFill updateTime = new TableFill("update_time", FieldFill.INSERT_UPDATE);
+//        List<TableFill> tableFills = new ArrayList<>();
+//        tableFills.add(createTime);
+//        tableFills.add(updateTime);
+//        strategyConfig.setTableFillList(tableFills);
 
         //乐管锁配置
-        strategyConfig.setVersionFieldName("version");
+//        strategyConfig.setVersionFieldName("version");
 
         strategyConfig.setRestControllerStyle(true);
         strategyConfig.setControllerMappingHyphenStyle(true); /// localhost:8080/hello_id_2
