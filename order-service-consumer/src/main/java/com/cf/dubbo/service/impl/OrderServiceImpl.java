@@ -6,7 +6,8 @@ import com.cf.dubbo.service.OrderService;
 import com.cf.dubbo.service.UserService;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.*;
+
 @Service
 public class OrderServiceImpl implements OrderService{
     @Reference
@@ -22,4 +23,46 @@ public class OrderServiceImpl implements OrderService{
         tianjiaceshi
         return userAddressList;
     }
+
+
+}
+
+class test{
+    public static void main(String[] args) {
+        String temp ="xyz";
+        String res = "";
+        for(int i=temp.length()-1;i>=0;i--){
+            res=temp.charAt(i)+res;
+        }
+        System.out.println(res);
+
+//        List<String> list = new ArrayList<>();
+//        list.add("aa");
+//        list.add("bb");
+//        System.out.println(list);
+//        list.add("cc");
+//        list.add(2,"666");
+//        System.out.println(list);
+//        list.add(list.size(),"99");
+//        System.out.println(list);
+//        list.iterator();
+//        Iterator iter =  list.iterator();
+//        while (iter.hasNext()){
+//         Object o =    iter.next();
+//         if(o.equals("99") || o.equals("666")){
+//             list.remove(o);
+//         }
+
+
+
+
+
+    }
+
+    private  static String fun(String s){
+        s  =s+"word";
+        return s;
+    }
+
+
 }
