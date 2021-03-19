@@ -46,6 +46,9 @@
         <module>seata-order-service2001</module>
         <module>seata-storage-service2002</module>
         <module>seata-account-service2003</module>
+        <module>user-service-provider</module>
+        <module>order-service-consumer</module>
+        <module>cf-interface</module>
     </modules>
 
 

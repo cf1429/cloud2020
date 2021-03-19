@@ -1,0 +1,12 @@
+server:
+  port: 8002
+
+dubbo:
+  application:
+    name: order-service-consumer
+  registry:
+    address: zookeeper://127.0.0.1:2181
+  monitor:
+    protocol: registry
+
+
