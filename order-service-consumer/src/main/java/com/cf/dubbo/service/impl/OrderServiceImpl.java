@@ -7,6 +7,9 @@ import com.cf.dubbo.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class OrderServiceImpl implements OrderService{
@@ -27,42 +30,43 @@ public class OrderServiceImpl implements OrderService{
 
 }
 
-class test{
-    public static void main(String[] args) {
-        String temp ="xyz";
-        String res = "";
-        for(int i=temp.length()-1;i>=0;i--){
-            res=temp.charAt(i)+res;
-        }
-        System.out.println(res);
+//class test{
+//    public static void main(String[] args) {
+////        String temp ="xyz";
+////        String res = "";
+////        for(int i=temp.length()-1;i>=0;i--){
+////            res=temp.charAt(i)+res;
+////        }
+////        System.out.println(res);
+////        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(1,1,4, TimeUnit.MINUTES, new SynchronousQueue<Runnable>());
+//
+////        List<String> list = new ArrayList<>();
+////        list.add("aa");
+////        list.add("bb");
+////        System.out.println(list);
+////        list.add("cc");
+////        list.add(2,"666");
+////        System.out.println(list);
+////        list.add(list.size(),"99");
+////        System.out.println(list);
+////        list.iterator();
+////        Iterator iter =  list.iterator();
+////        while (iter.hasNext()){
+////         Object o =    iter.next();
+////         if(o.equals("99") || o.equals("666")){
+////             list.remove(o);
+////         }
+//
+//
+//
+//
+//
+//    }
+//
+//    private  static String fun(String s){
+//        s  =s+"word";
+//        return s;
+//    }
 
-//        List<String> list = new ArrayList<>();
-//        list.add("aa");
-//        list.add("bb");
-//        System.out.println(list);
-//        list.add("cc");
-//        list.add(2,"666");
-//        System.out.println(list);
-//        list.add(list.size(),"99");
-//        System.out.println(list);
-//        list.iterator();
-//        Iterator iter =  list.iterator();
-//        while (iter.hasNext()){
-//         Object o =    iter.next();
-//         if(o.equals("99") || o.equals("666")){
-//             list.remove(o);
-//         }
 
-
-
-
-
-    }
-
-    private  static String fun(String s){
-        s  =s+"word";
-        return s;
-    }
-
-
-}
+//}
