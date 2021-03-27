@@ -49,6 +49,7 @@
         <module>user-service-provider</module>
         <module>order-service-consumer</module>
         <module>cf-interface</module>
+        <module>test-war</module>
     </modules>
 
 

@@ -7,6 +7,7 @@ import com.cf.spring.cloud.alibaba.mapper.AccountMapper;
 import com.cf.spring.cloud.alibaba.service.AccountService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
@@ -20,6 +21,7 @@ public class AccountServiceImpl implements AccountService {
     private AccountMapper accountMapper;
 
     @Override
+    @Transactional
     public void decrease(Long userId, BigDecimal money) {
         log.info("--------account-service中扣减账户余额开始");
         accountMapper.decrease(userId,money);

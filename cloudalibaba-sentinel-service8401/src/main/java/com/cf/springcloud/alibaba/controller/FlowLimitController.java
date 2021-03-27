@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class FlowLimitController {
     @GetMapping("/testA")
-    public String testA(){
+    public String testA(@RequestParam(value = "name") String name){
 //        try {
 //            TimeUnit.MILLISECONDS.sleep(800);
 //        } catch (InterruptedException e) {
