@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 @Service
 public class OrderServiceImpl implements OrderService{
-    @Reference(loadbalance = "roundrobin")   //dubbo服务消费者绕过zookeeper注册中心调用dubbo服务提供者
+    @Reference   //dubbo服务消费者绕过zookeeper注册中心调用dubbo服务提供者
     UserService userService;
 
     @Override
