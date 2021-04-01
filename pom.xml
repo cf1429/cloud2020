@@ -50,6 +50,7 @@
         <module>order-service-consumer</module>
         <module>cf-interface</module>
         <module>test-war</module>
+        <module>shiro</module>
     </modules>
 
 
