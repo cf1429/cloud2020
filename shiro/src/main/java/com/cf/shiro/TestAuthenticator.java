@@ -6,6 +6,7 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.realm.Realm;
 import org.apache.shiro.realm.text.IniRealm;
 import org.apache.shiro.subject.Subject;
 
@@ -25,7 +26,7 @@ public class TestAuthenticator {
         Subject subject = SecurityUtils.getSubject();
 
         //创建令牌
-        UsernamePasswordToken token = new UsernamePasswordToken("xiaochen","1253");
+        UsernamePasswordToken token = new UsernamePasswordToken("xiaochen","123");
         try{
             System.out.println("认证状态："+subject.isAuthenticated());
             subject.login(token);   //用户认证
@@ -38,6 +39,7 @@ public class TestAuthenticator {
             System.out.println("用户密码不正确");
 
         }
+        Realm realm1;
 
 
 
