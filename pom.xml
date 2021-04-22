@@ -51,6 +51,7 @@
         <module>cf-interface</module>
         <module>test-war</module>
         <module>shiro</module>
+        <module>springboot_jsp_shiro</module>
     </modules>
 
 
