@@ -26,6 +26,8 @@ public class ShiroConfig {
         // 配置系统公共资源
         Map<String,String> map = new HashMap<String,String>();
         map.put("/user/login","anon");  //请求login接口时不拦截
+        map.put("/user/register","anon");  //请求login接口时不拦截
+        map.put("/register.jsp","anon");  // 注册页面
         map.put("/**","authc");   //请求这个资源需要认证和授权
 
         //默认认证界面路径

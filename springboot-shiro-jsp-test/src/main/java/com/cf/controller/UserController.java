@@ -1,12 +1,18 @@
 package com.cf.controller;
 
+import com.cf.entity.User;
+import com.cf.service.UserService;
+import com.cf.util.SaltUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.subject.Subject;
 import org.omg.CORBA.portable.UnknownException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,6 +21,27 @@ import java.rmi.activation.UnknownObjectException;
 @Controller
 @RequestMapping(value = "/user")
 public class UserController {
+    @Autowired
+    private UserService userService;
+
+    /**
+     * 用户注册
+     * @param user
+     * @return
+     */
+    @RequestMapping("/register")
+    public String register(User user){
+        try{
+            userService.save(user);
+        }catch (Exception e){
+            e.printStackTrace();
+            return "redirect:/register.jsp";
+
+        }
+        return "redirect:/login.jsp";
+
+    }
+
     /**
      * 退出登录
      * @return
