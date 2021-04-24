@@ -25,7 +25,8 @@ public class ShiroConfig {
         // 配置系统受限资源
         // 配置系统公共资源
         Map<String,String> map = new HashMap<String,String>();
-        map.put("/index.jsp","authc");   //请求这个资源需要认证和授权
+        map.put("/user/login","anon");  //请求login接口时不拦截
+        map.put("/**","authc");   //请求这个资源需要认证和授权
 
         //默认认证界面路径
         shiroFilterFactoryBean.setLoginUrl("/login.jsp");
@@ -38,6 +39,7 @@ public class ShiroConfig {
     @Bean
     public DefaultWebSecurityManager getDefaultWebSecurityManager(){
         DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
+        defaultWebSecurityManager.setRealm(getRealm());  //很重要，不设置会包realm 找不到
         return defaultWebSecurityManager;
     }
     //自定义realm

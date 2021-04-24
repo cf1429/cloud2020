@@ -17,7 +17,6 @@ public class CustomerRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         String principal = (String)token.getPrincipal();
-        SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo();
         if("xiaochen".equals(principal)){
             return new SimpleAuthenticationInfo(principal,"123",this.getName());
         }

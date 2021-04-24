@@ -15,6 +15,19 @@ import java.rmi.activation.UnknownObjectException;
 @Controller
 @RequestMapping(value = "/user")
 public class UserController {
+    /**
+     * 退出登录
+     * @return
+     */
+    @RequestMapping("/logout")
+    public String  logout(){
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return "redirect:/login.jsp";
+    }
+
+
+
     @RequestMapping("/login")
     public String login(String username, String password){
         //获取主体对象
