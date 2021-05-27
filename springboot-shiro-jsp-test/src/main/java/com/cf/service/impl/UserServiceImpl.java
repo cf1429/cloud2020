@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @Date:2021/4/24 23:24
  * @describe
  */
-@Service
+@Service("userService")
 @Transactional
 public class UserServiceImpl implements UserService {
     @Autowired
@@ -28,5 +28,10 @@ public class UserServiceImpl implements UserService {
         user.setPassword(md5Hash.toHex());
         userDao.save(user);
 
+    }
+
+    @Override
+    public User getUserByName(String name) {
+        return userDao.findByUserName(name);
     }
 }

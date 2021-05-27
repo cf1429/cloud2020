@@ -11,4 +11,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserDao {
     void save(User user);
+
+    User findByUserName(String name);
 }

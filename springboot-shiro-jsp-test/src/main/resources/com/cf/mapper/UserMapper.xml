@@ -5,4 +5,8 @@
         insert  into user(name,password,salt) values (#{username},#{password},#{salt});
     </insert>
 
+    <select id="findByUserName" parameterType="java.lang.String" resultType="com.cf.entity.User">
+        select * from user where name = #{name}
+    </select>
+
 </mapper>

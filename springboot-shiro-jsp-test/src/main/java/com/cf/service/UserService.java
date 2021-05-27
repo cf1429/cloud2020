@@ -9,4 +9,6 @@ import com.cf.entity.User;
  */
 public interface UserService {
     public void save(User user);
+
+    public User getUserByName(String name);
 }
