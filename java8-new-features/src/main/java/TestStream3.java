@@ -83,4 +83,63 @@ public class TestStream3 {
         employees1.stream().filter(e->e.getAge()>10).skip(1).distinct().forEach(System.out::println);
 
     }
+
+    /**
+     * map 映射, 将元素转换成其他形式，或者提取信息，接收一个函数作为参数，该函数会被应用到每个元素上，并将其映射成一个新的元素，
+     * flatmap 接收一个函数作为参数，将流中的每一个值都换成另外一个流，然后把所有的流连成一个流
+     */
+    @Test
+    public void test6(){
+        List<String> list = Arrays.asList("aa","bb");
+        list.stream().map(str-> str.toUpperCase()).forEach(System.out::println);
+
+        System.out.println("获取对象的某个属性------");
+
+        employees1.stream().map(Employee::getName).forEach(System.out::println);
+        System.out.println("双层流遍历---------map");
+        // 双层流遍历
+        Stream<Stream<Character>> streamStream = list.stream().map(str -> filterCharacter(str));
+        streamStream.forEach(stream ->{
+            stream.forEach(str-> System.out.println(str));  // 前面等价于后面  stream.forEach(System.out::println);
+        });
+
+
+        System.out.println("-------flatmap");
+
+        Stream<Character> characterStream = list.stream().flatMap(s -> this.filterCharacter(s));
+        characterStream.forEach(System.out::println);
+
+    }
+
+    /**
+     * 测试list的add() 和 addAll（）的区别
+     */
+    @Test
+    public void test7(){
+        List<String> list = Arrays.asList("aa","bb");
+
+        List list2 = new ArrayList();
+        System.out.println("------------add()");
+        list2.add(11);
+        list2.add(22);
+        list2.add(list);
+        System.out.println(list2);   //输出结果：[11, 22, [aa, bb]]   add 是将list集合整体添加到list2中
+        System.out.println("-------------addAll()");
+        list2.addAll(list);
+        System.out.println(list2);  //输出结果：[11, 22, aa, bb]      addAll是将list集合中的元素添加到list2中
+    }
+
+    /**
+     * 将字符串转换成字符流，并返回
+     * @param str
+     * @return
+     */
+    public Stream<Character> filterCharacter(String str){
+        List<Character> list = new ArrayList<>();
+        for (Character character : str.toCharArray()){
+            list.add(character);
+        }
+        return list.stream();
+    }
+
 }
