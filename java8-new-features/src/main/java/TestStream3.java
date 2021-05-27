@@ -20,10 +20,10 @@ public class TestStream3 {
      */
 
     Employee [] employees = {
-            new Employee(1,"张三",20),
+            new Employee(4,"张三",20),
             new Employee(2,"李四",10),
-            new Employee(3,"王三",50),
-            new Employee(3,"王八",50),
+            new Employee(1,"王三",50),
+            new Employee(7,"王八",50),
             new Employee(3,"王三",50)} ;
     List<Employee> employees1 = Arrays.asList(employees);
 
@@ -140,6 +140,31 @@ public class TestStream3 {
             list.add(character);
         }
         return list.stream();
+    }
+
+    /**
+     * 自然排序
+     */
+    @Test
+    public void test8(){
+        List<String> list = Arrays.asList("bb","a","cc","e");
+        list.stream().sorted().forEach(System.out::println);
+    }
+
+    /**
+     * 定制排序,先按照年龄排序，再按照id排序
+     */
+    @Test
+    public void test9(){
+        Stream<Employee> sorted = employees1.stream().sorted((e1, e2) -> {
+            if (e1.getAge().equals(e2.getAge())) {
+                return e1.getId().compareTo(e2.getId());
+            } else {
+                return e1.getAge().compareTo(e2.getAge());
+            }
+        });
+
+        sorted.forEach(System.out::println);
     }
 
 }
