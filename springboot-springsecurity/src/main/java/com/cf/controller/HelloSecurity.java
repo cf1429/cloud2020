@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/hello")
 public class HelloSecurity {
-    @RequestMapping("sayHello")
+    @RequestMapping("/sayHello")
     public String  sayHello(){
-        return "hello security 安全框架";
+        return "hello security";
     }
 }
