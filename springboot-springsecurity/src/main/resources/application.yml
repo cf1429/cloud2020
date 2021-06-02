@@ -1,5 +1,10 @@
 spring:
-  security:
-    user:
-      name: test
-      password: test
+  datasource:
+    url: jdbc:mysql://8.133.170.159:3306/db2020
+    username: root
+    password: awnjqq58
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    database: mysql

@@ -14,9 +14,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * @Date:2021/5/28 15:24
  * @describe
  */
-@EnableGlobalMethodSecurity(prePostEnabled = true)  //启动角色认证
-@Configuration
-@EnableWebSecurity   //启用security安全框架的安全校验
+//@EnableGlobalMethodSecurity(prePostEnabled = true)  //启动角色认证
+//@Configuration
+//@EnableWebSecurity   //启用security安全框架的安全校验
 public class MyWebSecurity extends WebSecurityConfigurerAdapter {
     //在方法中配置用户名和密码，作为用户登录的数据
     @Override
