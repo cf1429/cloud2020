@@ -20,11 +20,11 @@ public class TestStream3 {
      */
 
     Employee [] employees = {
-            new Employee(4,"张三",20),
-            new Employee(2,"李四",10),
-            new Employee(1,"王三",50),
-            new Employee(7,"王八",50),
-            new Employee(3,"王三",50)} ;
+            new Employee(4,"张三",20, Employee.Status.FREE),
+            new Employee(2,"李四",10, Employee.Status.BUSY),
+            new Employee(1,"王三",50, Employee.Status.VOCATION),
+            new Employee(7,"王八",50, Employee.Status.BUSY),
+            new Employee(3,"王三",50, Employee.Status.VOCATION)} ;
     List<Employee> employees1 = Arrays.asList(employees);
 
     /**
@@ -165,6 +165,24 @@ public class TestStream3 {
         });
 
         sorted.forEach(System.out::println);
+    }
+
+    /**
+     * 查找与匹配
+     * allMatch -- 检查是否匹配所有元素
+     * anyMatch -- 检查是佛至少匹配一个元素
+     * noneMatch -- 检查是否没有匹配所有元素
+     * findFirst -- 返回第一个元素
+     * findAny -- 返回当前选中的任意元素
+     * count -- 返回选中元素的总个数
+     * max  -- 返回选中最大值
+     * min  -- 返回选中最小值
+     */
+    @Test
+    public void test10(){
+        boolean b = employees1.stream()
+                .allMatch((e) -> e.getStatus().equals(Employee.Status.FREE));
+        System.out.println(b);
     }
 
 }

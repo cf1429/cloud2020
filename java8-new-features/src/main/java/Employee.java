@@ -9,11 +9,14 @@ public class Employee {
     private Integer id;
     private String name;
     private Integer age;
+    private Status status;
 
-    public Employee(Integer id, String name, Integer age) {
+
+    public Employee(Integer id, String name, Integer age, Status status) {
         this.id = id;
         this.name = name;
         this.age = age;
+        this.status = status;
     }
 
     public Integer getId() {
@@ -40,15 +43,25 @@ public class Employee {
         this.age = age;
     }
 
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+
     @Override
     public String toString() {
         return "Employee{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
+                ", status=" + status +
                 '}';
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -63,5 +76,11 @@ public class Employee {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, age);
+    }
+
+    public enum Status{
+        FREE,
+        BUSY,
+        VOCATION;
     }
 }
