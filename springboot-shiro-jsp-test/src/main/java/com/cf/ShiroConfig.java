@@ -1,4 +1,4 @@
-package com.cf.config;
+package com.cf;
 
 import com.cf.realms.CustomerRealm;
 import org.apache.shiro.realm.Realm;

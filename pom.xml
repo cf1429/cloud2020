@@ -54,6 +54,8 @@
         <module>springboot_jsp_shiro</module>
         <module>java8-new-features</module>
         <module>springboot-springsecurity</module>
+        <module>springboot-springsecurity-inmemoryuserdetails</module>
+        <module>springbootsecurity-jdbc</module>
     </modules>
 
 

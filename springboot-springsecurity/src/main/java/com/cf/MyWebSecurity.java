@@ -1,4 +1,4 @@
-package com.cf.config;
+package com.cf;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
