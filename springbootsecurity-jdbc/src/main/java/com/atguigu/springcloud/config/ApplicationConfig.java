@@ -16,7 +16,7 @@ import javax.sql.DataSource;
  * @Date:2021/6/13 18:53
  * @describe
  */
-@Configuration
+//@Configuration
 public class ApplicationConfig {
     // 通过spring容器注入DataSource对象
     @Autowired

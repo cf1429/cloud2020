@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atguigu.springcloud.mapper.SysUserMapper">
+
+    <resultMap id="ResultMap" type="com.atguigu.springcloud.entity.SysUser">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="realname" property="realname"/>
+        <result column="isexprie" property="isExpired"/>
+        <result column="isenable" property="isEnabled"/>
+        <result column="islock" property="isLocked"/>
+        <result column="iscredentials" property="isCredentials"/>
+        <result column="createtime" property="createTime" jdbcType="DATE"/>
+        <result column="logintime" property="loginTime" jdbcType="DATE"/>
+    </resultMap>
+
+
+    <insert id="insertSysUser">
+        insert  into sys_user(username,password,realname,isenable,islock,iscredentials,createtime,logintime)
+        values (#{username},#{password},#{realname},#{isEnabled},#{isLocked},#{isCredentials},#{createTime},#{loginTime});
+    </insert>
+
+    <select id="selectSysUser" resultMap="ResultMap" parameterType="java.lang.String">
+        select id,username,password,realname,isexprie,isenable,islock,iscredentials,createtime,logintime from sys_user where username = #{username}
+
+    </select>
+
+</mapper>

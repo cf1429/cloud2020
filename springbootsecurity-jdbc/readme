@@ -1,0 +1,16 @@
+使用用户和角色，认证用户
+实现步骤：
+1、新建maven项目
+2、加入gav坐标
+   1）spring-boot
+   2)spring-security
+   3)spring-web
+   4)spring-mybatis相关依赖
+   5)mysql驱动
+3、编写application.yml
+连接数据库，创建连接池
+4、创建自己的user类，代替UserDetails
+5、创建自定义的UserDetailsService实现类，在重写方法中，查询数据库获取用户信息， 获取角色数据，构建
+UserDetalis实现类对象
+6、创建类继承websecurityconfigureAdapter自定一安全的配置
+7、自己定义登录

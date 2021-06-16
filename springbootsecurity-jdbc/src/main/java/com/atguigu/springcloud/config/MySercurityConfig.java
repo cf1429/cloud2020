@@ -12,14 +12,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  * @Date:2021/6/13 19:04
  * @describe
  */
-@Configuration
+//@Configuration
 public class MySercurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
-    @Qualifier("jdbcUserDetailsService")
-    private UserDetailsService userDetailsService;
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        super.configure(http);
-        http.userDetailsService(userDetailsService);
-    }
+//    @Autowired
+//    @Qualifier("jdbcUserDetailsService")
+//    private UserDetailsService userDetailsService;
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        super.configure(http);
+//        http.userDetailsService(userDetailsService);
+//    }
 }
