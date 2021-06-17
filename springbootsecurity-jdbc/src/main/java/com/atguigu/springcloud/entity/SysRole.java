@@ -35,4 +35,13 @@ public class SysRole {
     public void setRolememo(String rolememo) {
         this.rolememo = rolememo;
     }
+
+    @Override
+    public String toString() {
+        return "SysRole{" +
+                "id=" + id +
+                ", rolename='" + rolename + '\'' +
+                ", rolememo='" + rolememo + '\'' +
+                '}';
+    }
 }

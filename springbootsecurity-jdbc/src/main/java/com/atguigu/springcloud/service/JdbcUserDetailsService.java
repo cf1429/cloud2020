@@ -31,10 +31,10 @@ public class JdbcUserDetailsService implements UserDetailsService {
         // 1，根据username获取user账户信息
         SysUser sysUser = sysUserMapper.selectSysUser(s);
         if(sysUser != null ){
-            System.out.println("查询到用户信息");
+            System.out.println("查询到用户信息"+sysUser.toString());
             // 2.根据用户id获取角色信息
             List<SysRole> sysRoles = sysRoleMapper.selectSysRoleByUserId(sysUser.getId());
-            System.out.println(sysRoles);
+            System.out.println(sysRoles.toString());
             List<GrantedAuthority> authorities = new ArrayList<>();
             sysRoles.stream().forEach((e)->{
                 GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_"+e.getRolename());
