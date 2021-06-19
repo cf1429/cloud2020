@@ -31,13 +31,18 @@ public class CustomSecurityConfig extends WebSecurityConfigurerAdapter {
         //super.configure(http);
         System.out.println("-=========httpSecurity----------");
         http.authorizeRequests()
-                .antMatchers("/index").permitAll()   //这个请求放行，不进行认证
+                // 指定那些地址可以直接访问，和登录有关的需要进行指定
+                .antMatchers("/index","/myLogin.html","/login").permitAll()   //这个请求放行，不进行认证
                 .antMatchers("/access/user").hasRole("USER")
                 .antMatchers("/access/admin").hasRole("ADMIN")
                 .antMatchers("/access/read").hasRole("READ")
                 .anyRequest().authenticated()   //其他请求需要认证
                 .and()
-                .formLogin();
+                .formLogin()
+                .loginPage("/myLogin.html")   //设置自定义的登录页面
+                .loginProcessingUrl("/login")  //form 中登录访问的uri地址
+                .and()
+                .csrf().disable();   //关于跨域访问的安全设置，先禁用
     }
 
 
