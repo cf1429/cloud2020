@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 /**
  * @Author:chenf
@@ -18,6 +20,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class CustomSecurityConfig extends WebSecurityConfigurerAdapter {
+    //自动注入AuthenticationSuccessHandler ，AuthenticationFailureHandler
+
+    @Autowired
+    private AuthenticationSuccessHandler successHandler;
+    @Autowired
+    private AuthenticationFailureHandler failureHandler;
+
+
     @Autowired
     private UserDetailsService userDetailsService;
     @Override
@@ -26,25 +36,53 @@ public class CustomSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
     }
 
+//    @Override
+//    public void configure(WebSecurity web) throws Exception {
+//        //super.configure(web);
+//        web.ignoring().antMatchers("/resources/**");
+//    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //super.configure(http);
         System.out.println("-=========httpSecurity----------");
         http.authorizeRequests()
                 // 指定那些地址可以直接访问，和登录有关的需要进行指定
-                .antMatchers("/index","/myLogin.html","/login","/error.html").permitAll()   //这个请求放行，不进行认证
+                .antMatchers("/index","/ajaxlogin.html","/login","/js/**").permitAll()   //这个请求放行，不进行认证
                 .antMatchers("/access/user").hasRole("USER")
                 .antMatchers("/access/admin").hasRole("ADMIN")
                 .antMatchers("/access/read").hasRole("READ")
                 .anyRequest().authenticated()   //其他请求需要认证
                 .and()
                 .formLogin()
-                .loginPage("/myLogin.html")   //设置自定义的登录页面
+                .successHandler(successHandler)
+                .failureHandler(failureHandler)
+                .loginPage("/ajaxlogin.html")   //设置自定义的登录页面
                 .loginProcessingUrl("/login")  //form 中登录访问的uri地址
-                .failureUrl("/error.html")  //定义错误页面
                 .and()
                 .csrf().disable();   //关于跨域访问的安全设置，先禁用
     }
+
+//    // 基于表单配置
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        //super.configure(http);
+//        System.out.println("-=========httpSecurity----------");
+//        http.authorizeRequests()
+//                // 指定那些地址可以直接访问，和登录有关的需要进行指定
+//                .antMatchers("/index","/myLogin.html","/login","/error.html").permitAll()   //这个请求放行，不进行认证
+//                .antMatchers("/access/user").hasRole("USER")
+//                .antMatchers("/access/admin").hasRole("ADMIN")
+//                .antMatchers("/access/read").hasRole("READ")
+//                .anyRequest().authenticated()   //其他请求需要认证
+//                .and()
+//                .formLogin()
+//                .loginPage("/myLogin.html")   //设置自定义的登录页面
+//                .loginProcessingUrl("/login")  //form 中登录访问的uri地址
+//                .failureUrl("/error.html")  //定义错误页面
+//                .and()
+//                .csrf().disable();   //关于跨域访问的安全设置，先禁用
+//    }
 
 
 }

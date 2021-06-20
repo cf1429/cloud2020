@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/jquery-3.4.1.js"></script>
+</head>
+<body>
+    <p>前后端分离ajax请求方式</p>
+    <div>
+        用户名：<input type="text" id="username" value=""> <br/>
+        密&nbsp;码：<input type="text" id="password" value=""/><br/>
+        <button id="btnLogin">使用ajax登录</button>
+    </div>
+</body>
+<script type="text/javascript">
+    $("#btnLogin").click(function () {
+        //alert("1111");
+        var uname = $("#username").val();
+        var pwd = $("#password").val();
+        $.ajax({
+            url:"/login",
+            type:"POST",
+            data:{
+                "username":uname,
+                "password":pwd
+            },
+            dataType:"json",
+            success:function(resp){
+                alert("代码："+resp.code+" 提示"+resp.msg)
+            }
+        })
+    });
+</script>
+</html>
