@@ -10,20 +10,32 @@
     <div>
         用户名：<input type="text" id="username" value=""> <br/>
         密&nbsp;码：<input type="text" id="password" value=""/><br/>
+        验证码：<input type="text" id="txtcode" value=""/><br/>
+        <img id="imageCode" src="/captch/code"/> <a href="javascript:void(0)" onclick="changeCode()">重新获取</a>
         <button id="btnLogin">使用ajax登录</button>
     </div>
 </body>
 <script type="text/javascript">
+    function changeCode(){
+        var url = "/captch/code?t="+new Date();
+        $("#imageCode").attr("src",url);
+
+    }
+
+
+
     $("#btnLogin").click(function () {
         //alert("1111");
         var uname = $("#username").val();
         var pwd = $("#password").val();
+        var code = $("#txtcode").val();
         $.ajax({
             url:"/login",
             type:"POST",
             data:{
                 "username":uname,
-                "password":pwd
+                "password":pwd,
+                "code":code
             },
             dataType:"json",
             success:function(resp){

@@ -48,7 +48,7 @@ public class CustomSecurityConfig extends WebSecurityConfigurerAdapter {
         System.out.println("-=========httpSecurity----------");
         http.authorizeRequests()
                 // 指定那些地址可以直接访问，和登录有关的需要进行指定
-                .antMatchers("/index","/ajaxlogin.html","/login","/js/**").permitAll()   //这个请求放行，不进行认证
+                .antMatchers("/index","/ajaxlogin.html","/login","/js/**","/captch/**").permitAll()   //这个请求放行，不进行认证
                 .antMatchers("/access/user").hasRole("USER")
                 .antMatchers("/access/admin").hasRole("ADMIN")
                 .antMatchers("/access/read").hasRole("READ")
