@@ -1,5 +1,6 @@
 package com.atguigu.springcloud.config;
 
+import com.atguigu.springcloud.filter.VerificationCodeFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -11,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * @Author:chenf
@@ -61,6 +63,10 @@ public class CustomSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/login")  //form 中登录访问的uri地址
                 .and()
                 .csrf().disable();   //关于跨域访问的安全设置，先禁用
+
+
+        // 向链条中，增加一个自定义过滤器
+        http.addFilterBefore(new VerificationCodeFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
 //    // 基于表单配置

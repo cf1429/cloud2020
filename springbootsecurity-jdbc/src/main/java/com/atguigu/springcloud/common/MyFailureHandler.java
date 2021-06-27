@@ -20,6 +20,16 @@ import java.io.PrintWriter;
  */
 @Component
 public class MyFailureHandler implements AuthenticationFailureHandler {
+    private Result result;
+
+    public Result getResult() {
+        return result;
+    }
+
+    public void setResult(Result result) {
+        this.result = result;
+    }
+
     /**
      *
      * @param httpServletRequest 请求对象
@@ -32,10 +42,13 @@ public class MyFailureHandler implements AuthenticationFailureHandler {
     public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
        //当框架验证用户信息失败时执行的方法
         httpServletResponse.setContentType("text/json;charset=utf-8");
-        Result result = new Result();
-        result.setCode(1);
-        result.setError(1001);
-        result.setMsg("登录失败");
+        if(result == null ){
+            Result localResult = new Result();
+            localResult.setCode(1);
+            localResult.setError(1001);
+            localResult.setMsg("登录失败");
+            result = localResult;
+        }
         ServletOutputStream outputStream = httpServletResponse.getOutputStream();
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.writeValue(outputStream,result);
