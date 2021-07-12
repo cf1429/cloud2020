@@ -1,4 +1,4 @@
-package com.cf.service.impl;
+package com.cf.service;
 
 import com.cf.dao.UserInfoDao;
 import com.cf.entity.UserInfo;
