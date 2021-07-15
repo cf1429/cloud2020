@@ -59,27 +59,8 @@ public class UserInfoController {
     @GetMapping(value = "/user/test")
     public Map<String,Object> test(String token){
         Map<String,Object> map = new HashMap<>();
-        log.info("输入的token为：{{}}",token);
-        try {
-            JWTUtils.verify(token);
-            map.put("state",true);
-            map.put("msg","请求成功！");
-            return map;
-        }catch (SignatureVerificationException e){
-            map.put("msg","无效签名！");
-            e.printStackTrace();
-        }catch (TokenExpiredException e){
-            map.put("msg","token过期！");
-            e.printStackTrace();
-        }catch (AlgorithmMismatchException e){
-            map.put("msg","token算法不一致");
-            e.printStackTrace();
-        }catch (Exception e){
-            map.put("msg","token无效!");
-            e.printStackTrace();
-        }
-        map.put("state",false);
-
+        map.put("state",true);
+        map.put("msg","操作成功");
         return map;
     }
 }
