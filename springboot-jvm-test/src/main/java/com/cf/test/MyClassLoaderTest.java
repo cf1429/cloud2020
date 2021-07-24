@@ -18,8 +18,9 @@ public class MyClassLoaderTest {
         }
 
         private byte[] loadBy(String name) throws Exception{
-            name = name.replaceAll("\\."," ");
-            FileInputStream fis = new FileInputStream(classPath+"/"+name+".class");
+            name = name.replace(".","\\");
+            System.out.println(classPath+"\\"+name+".class");
+            FileInputStream fis = new FileInputStream(classPath+"\\"+name+".class");
             int len = fis.available();
             byte[] data = new byte[len];
             fis.read(data);
@@ -40,15 +41,64 @@ public class MyClassLoaderTest {
         }
 
 
+        protected Class<?> loadClass(String name, boolean resolve)
+                throws ClassNotFoundException
+        {
+            synchronized (getClassLoadingLock(name)) {
+                // First, check if the class has already been loaded
+                Class<?> c = findLoadedClass(name);
+                if (c == null) {
+                    long t0 = System.nanoTime();
+//                    try {
+//                        if (parent != null) {
+//                            c = parent.loadClass(name, false);
+//                        } else {
+//                            c = findBootstrapClassOrNull(name);
+//                        }
+//                    } catch (ClassNotFoundException e) {
+//                        // ClassNotFoundException thrown if class not found
+//                        // from the non-null parent class loader
+//                    }
+
+                    if (c == null) {
+                        // If still not found, then invoke findClass in order
+                        // to find the class.
+                        long t1 = System.nanoTime();
+                        if(!name.startsWith("com.cf")){
+                            c = this.getParent().loadClass(name);
+                        }else{
+                            c = findClass(name);
+                        }
+
+                        // this is the defining class loader; record the stats
+                        sun.misc.PerfCounter.getParentDelegationTime().addTime(t1 - t0);
+                        sun.misc.PerfCounter.getFindClassTime().addElapsedTimeFrom(t1);
+                        sun.misc.PerfCounter.getFindClasses().increment();
+                    }
+                }
+                if (resolve) {
+                    resolveClass(c);
+                }
+                return c;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
         public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
             MyClassLoader classLoader = new MyClassLoader("E:\\test");
-            Class aClass = classLoader.loadClass("com.cf.User");
+            Class aClass = classLoader.loadClass("com.cf.test.User");
             Object o = aClass.newInstance();
             Method m = aClass.getMethod("sout", null);
             Object invoke = m.invoke(o, null);
             System.out.println(aClass.getClassLoader().getClass().getName());
-
-
         }
     }
 
