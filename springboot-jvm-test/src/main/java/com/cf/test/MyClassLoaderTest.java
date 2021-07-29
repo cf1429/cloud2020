@@ -99,6 +99,13 @@ public class MyClassLoaderTest {
             Method m = aClass.getMethod("sout", null);
             Object invoke = m.invoke(o, null);
             System.out.println(aClass.getClassLoader().getClass().getName());
+
+            MyClassLoader classLoader1 = new MyClassLoader("E:\\test1");
+            Class aClass1 = classLoader1.loadClass("com.cf.test.User");
+            Object o1 = aClass1.newInstance();
+            Method m1 = aClass1.getMethod("sout", null);
+            Object invoke1 = m1.invoke(o1, null);
+            System.out.println(aClass1.getClassLoader().getClass().getName());
         }
     }
 
