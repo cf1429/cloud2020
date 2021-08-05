@@ -55,6 +55,7 @@
         <module>java8-new-features</module>
         <module>springboot-springsecurity</module>
         <module>springbootsecurity-jdbc</module>
+        <module>tl-project</module>
     </modules>
 
 
