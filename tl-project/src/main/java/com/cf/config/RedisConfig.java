@@ -1,8 +1,10 @@
 package com.cf.config;
 
+
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,10 +15,18 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class RedisConfig {
+    //
+    @Value("${spring.redis.host}")
+    private String address;
+
+    @Value("${spring.redis.port}")
+    private String port;
+
+
     @Bean
     public RedissonClient redissonClient(){
         Config config = new Config();
-        config.useSingleServer().setAddress("redis://8.133.170.159:6379")
+        config.useSingleServer().setAddress("redis://"+address+":"+port)
                 .setDatabase(1);
         return Redisson.create(config);
     }

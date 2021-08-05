@@ -29,6 +29,8 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper,Product> imple
      */
     public Product getProductInfo(String id) {
         //查询是先从redis查找商品信息，如果不为空，则直接返回
+        // 通过redis缓存解决的磁盘io的问题，因为从数据库中获取数据的性能相对于从缓存中获取数据的性能低，
+        // 所以通过缓存来解决磁盘io
         Product product = (Product) redisTemplate.opsForValue().get("product_key_" + id);
         if(product != null ){
             return product;
