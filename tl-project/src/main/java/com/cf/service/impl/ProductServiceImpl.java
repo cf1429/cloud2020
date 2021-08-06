@@ -38,15 +38,22 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper,Product> imple
         //通过redisson并发安全的控制
         RLock lock = redissonClient.getLock("product_redisson_key" + id);
         try{
-            if(lock.tryLock()){
+            if(lock.tryLock(0,5, TimeUnit.SECONDS)){
                 // 上锁则代表要从数据库中获取数据,并且将数据从存放到redis中
                 product = this.baseMapper.selectById(id);
                 redisTemplate.opsForValue().set("product_key_"+id,product,360, TimeUnit.MINUTES);
                 // 否则不需要
             }else{
-                product = (Product) redisTemplate.opsForValue().get("product_key_" + id);
+                //product = (Product) redisTemplate.opsForValue().get("product_key_" + id);
+                // 给线程续命
+                Thread.sleep(50);
+                // 等待之后，回调此方法，为了等持有所得线程释放所之后，获取数据
+                getProductInfo(id);
             }
-        }finally {
+        }catch (InterruptedException e){
+            e.printStackTrace();
+
+        } finally {
             if(lock.isLocked()){
                 if(lock.isHeldByCurrentThread()){
                     lock.unlock();
