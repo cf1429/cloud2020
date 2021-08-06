@@ -38,6 +38,11 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper,Product> imple
         //通过redisson并发安全的控制
         RLock lock = redissonClient.getLock("product_redisson_key" + id);
         try{
+            // 除了下面这种加锁的方式，还可以直接通过 lock.lock();上锁，采用此种方式上锁，会导致所有的请求串行，
+            // 实际上是和高并发的目的违背的，为了打破这种情况，可以在上锁之后在判断一次redis中是否有值，如果有值
+            // 直接返回，后面的线程拿到锁之后，判断redis中是否有值，如果已经有值，则直接返回，最后需要通过lock.unlock()释放锁
+
+
             if(lock.tryLock(0,5, TimeUnit.SECONDS)){
                 // 上锁则代表要从数据库中获取数据,并且将数据从存放到redis中
                 product = this.baseMapper.selectById(id);
